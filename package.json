@@ -1,0 +1,26 @@
+{
+  "name": "react-component",
+  "version": "1.0.0",
+  "description": "component library for react",
+  "main": "dist/cjs/index.js",
+  "author": "han",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup --config --bundleConfigAsCjs",
+    "storybook": "start-storybook -p 6006"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/react": "^7.6.8",
+    "@types/react": "^18.2.48",
+    "react": "^18.2.0",
+    "rollup": "^4.9.5",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
