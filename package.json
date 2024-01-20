@@ -1,8 +1,8 @@
 {
-  "name": "@monkey/component-library",
-  "version": "0.0.1",
+  "name": "react-component-library-monkey",
+  "version": "0.0.2",
   "description": "component library for react",
-  "main": "dist/cjs/index.js",
+  "main": "build/index.js",
   "author": "han",
   "license": "MIT",
   "scripts": {
@@ -36,5 +36,7 @@
   },
   "files": [
     "build"
-  ]
+  ],
+  "types": "build/types/index.d.ts"
+
 }
