@@ -1,6 +1,6 @@
 {
   "name": "react-component-library-monkey",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "component library for react",
   "main": "build/index.js",
   "author": "han",
@@ -27,6 +27,7 @@
     "react-dom": "^18.2.0",
     "rollup": "^4.9.5",
     "storybook": "^7.6.10",
+    "styled-components": "^6.1.8",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3"
   },
@@ -38,5 +39,4 @@
     "build"
   ],
   "types": "build/types/index.d.ts"
-
 }
