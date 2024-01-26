@@ -1,75 +1,80 @@
-import React, { ButtonHTMLAttributes } from 'react'
-import styled, { CSSObject, css } from 'styled-components'
+import React, { ButtonHTMLAttributes } from "react";
+import styled, { CSSObject, css } from "styled-components";
 
-type ColorType = "red" | "blue" | "yellow"
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  block?: boolean;
+type ColorType = "red" | "blue" | "yellow";
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  $block?: boolean;
   label?: string;
   color?: ColorType;
   style?: CSSObject;
   disabled?: boolean;
-
 }
 
-const Button: React.FunctionComponent<ButtonProps> = ({ color = 'blue', label = 'Button', ...props }) => {
+const Button: React.FunctionComponent<ButtonProps> = ({
+  color = "blue",
+  label = "Button",
+  ...props
+}) => {
   return (
-    <StyledButton
-    {...props}
-    
-    color={color}
-    
-    >
+    <StyledButton {...props} color={color} $block={props.$block}>
       {label}
     </StyledButton>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
 
-const getStyleByColor = (
-  color: ColorType
-) => {
-  
+const getStyleByColor = (color: ColorType) => {
   switch (color) {
-    case 'red': {
+    case "red": {
       return css`
         background: red;
-        color:white;
-        border:1px solid red;
-      `
+        color: white;
+        border: 1px solid red;
+      `;
     }
-    case 'blue': {
+    case "blue": {
       return css`
-      background: blue;
-      color:white;
-      border: 1px solid blue;
-      `
+        background: blue;
+        color: white;
+        border: 1px solid blue;
+      `;
     }
-    case 'yellow':{
+    case "yellow": {
       return css`
         background: yellow;
-        color:white;
+        color: white;
         border: 1px solid yellow;
-      `
+      `;
     }
   }
-}
+};
 
-const StyledButton = styled.button<Pick<ButtonProps, 'disabled' | 'color'>>`
-  display:flex; 
-  padding:12px 20px;
+const StyledButton = styled.button<
+  Pick<ButtonProps, "disabled" | "color" | "$block">
+>`
+  display: flex;
+  padding: 12px 20px;
   border-radius: 12px;
   cursor: pointer;
-  
-  &:disabled{
-    cursor:not-allowed;
-    opacity: 0.5;
-  };
 
-  ${({color}) =>{
-    if(color){
-      return getStyleByColor(color)}
-    }
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 
-`
+  ${({ color }) => {
+    if (color) {
+      return getStyleByColor(color);
+    }
+  }}
+
+  ${({ $block }) => {
+    if ($block) {
+      return css`
+        display: block;
+        width: 100%;
+      `;
+    }
+  }}
+`;
