@@ -28,10 +28,10 @@ const Table: React.FunctionComponent<TableProps> = ({
         </StyledTr>
       </thead>
       <tbody>
-        {dataSource.map((data) => (
-          <StyledTr>
+        {dataSource.map((data, i) => (
+          <StyledTr key={i.toString()}>
             {columns.map((column) => (
-              <StyledTd>{data[column.dataIndex]}</StyledTd>
+              <StyledTd key={column.key}>{data[column.dataIndex]}</StyledTd>
             ))}
           </StyledTr>
         ))}
