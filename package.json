@@ -1,6 +1,6 @@
 {
   "name": "react-component-library-monkey",
-  "version": "0.0.13",
+  "version": "0.0.16",
   "description": "component library for react",
   "main": "build/index.js",
   "author": "han",
@@ -23,6 +23,7 @@
     "@storybook/react-webpack5": "^7.6.10",
     "@storybook/test": "^7.6.10",
     "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup": "^4.9.5",
@@ -32,8 +33,9 @@
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.8"
   },
   "files": [
     "build"

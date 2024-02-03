@@ -47,6 +47,7 @@ const Container = styled("span").withConfig({
   shouldForwardProp: (prop) => !["error"].includes(prop),
 })<Pick<InputProps, "prefix" | "suffix" | "error">>`
   display: flex;
+  height: 100%;
   ${({ prefix, suffix, error }) => {
     if (prefix || suffix) {
       return css`
