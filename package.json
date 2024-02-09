@@ -1,6 +1,6 @@
 {
   "name": "react-component-library-monkey",
-  "version": "0.0.16",
+  "version": "0.0.24",
   "description": "component library for react",
   "main": "build/index.js",
   "author": "han",
@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rollup --config --bundleConfigAsCjs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "svgr": "svgr --icon --title-prop --typescript --replace-attr-values '#1D1D1D=currentColor' -d src/Svgr -- assets"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",
@@ -22,6 +23,7 @@
     "@storybook/react": "^7.6.8",
     "@storybook/react-webpack5": "^7.6.10",
     "@storybook/test": "^7.6.10",
+    "@svgr/cli": "^8.1.0",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "react": "^18.2.0",

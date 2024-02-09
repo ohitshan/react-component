@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled, { CSSObject, css } from "styled-components";
 import Input from "../Input";
 import { createPortal } from "react-dom";
+import SvgArrowDown from "../../Svgr/ArrowDown";
 
 interface Option {
   value: string;
@@ -37,6 +38,7 @@ const Select: React.FunctionComponent<DropdownProps> = ({
   const [isOpened, setIsOpened] = useState(false);
   const [direction, setDirection] = useState<"downward" | "upward">("downward");
   const [searchValue, setSearchValue] = useState(value);
+  const [leftPosition, setLeftPosition] = useState<number>();
 
   const currentHeight =
     options.length * listHeight + 12 > optionHeight
@@ -68,6 +70,17 @@ const Select: React.FunctionComponent<DropdownProps> = ({
     return () => document.removeEventListener("click", handleClose);
   }, [isOpened]);
 
+  useEffect(() => {
+    const handleClose = () => {
+      const left = containerRef.current?.offsetLeft;
+      if (isOpened) {
+        setLeftPosition(left);
+      }
+    };
+    window.addEventListener("resize", handleClose);
+    return () => document.removeEventListener("resize", handleClose);
+  }, [isOpened]);
+
   const handleClickInput = () => {
     setIsOpened(!isOpened);
   };
@@ -75,7 +88,6 @@ const Select: React.FunctionComponent<DropdownProps> = ({
   const handleClickUl = () => {
     setIsOpened(false);
   };
-
   const renderOptionList = () => {
     if (containerRef.current) {
       const position = containerRef.current?.getBoundingClientRect();
@@ -86,7 +98,7 @@ const Select: React.FunctionComponent<DropdownProps> = ({
       return createPortal(
         <StyledUl
           onClick={handleClickUl}
-          left={position?.left}
+          left={leftPosition ?? containerRef.current.offsetLeft}
           top={top}
           optionheight={currentHeight}
           width={position.width}
@@ -117,17 +129,18 @@ const Select: React.FunctionComponent<DropdownProps> = ({
       ref={containerRef}
       onClick={(e) => {
         e.stopPropagation();
+        handleClickInput();
       }}
     >
       {isOpened && renderOptionList()}
       <Input
         readOnly
-        onClick={handleClickInput}
         value={
           options.find((option) => option.value === searchValue)?.label || ""
         }
         onChange={(e) => onChange && onChange(e.target.value)}
         style={{ cursor: "pointer" }}
+        suffix={<SvgArrowDown />}
       />
     </Container>
   );
@@ -138,6 +151,7 @@ export default Select;
 const Container = styled.div`
   position: relative;
   height: 32px;
+  box-sizing: border-box;
 `;
 
 const StyledUl = styled("ul").withConfig({

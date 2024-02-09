@@ -31,4 +31,5 @@ const Container = styled.div`
   display: flex;
   height: 200vh;
   align-items: center;
+  background: black;
 `;

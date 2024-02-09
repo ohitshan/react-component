@@ -35,7 +35,16 @@ const Input: React.FunctionComponent<InputProps> = ({
         addonBefore={addonBefore}
         {...props}
       />
-      {suffix && <span>{suffix}</span>}
+      {suffix && (
+        <span
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          {suffix}
+        </span>
+      )}
       {addonAfter && addonAfter}
     </Container>
   );
@@ -46,14 +55,17 @@ export default Input;
 const Container = styled("span").withConfig({
   shouldForwardProp: (prop) => !["error"].includes(prop),
 })<Pick<InputProps, "prefix" | "suffix" | "error">>`
+  box-sizing: border-box;
   display: flex;
   height: 100%;
+  background: white !important;
+  border-radius: 4px;
   ${({ prefix, suffix, error }) => {
     if (prefix || suffix) {
       return css`
         border: ${() => (error ? "1px solid red" : "1px solid gray")};
-        padding: 4px 12px;
-        border-radius: 4px;
+        padding: 0px 12px;
+        height: 100%;
       `;
     }
   }}
@@ -106,6 +118,20 @@ const StyledInput = styled("input").withConfig({
 &:focus,
   :active {
     border: 1px solid purple;
+
+    ${({ prefix, suffix, error }) => {
+      if (prefix || suffix) {
+        return css`
+          padding: 0;
+          border: none;
+        `;
+      } else {
+        return css`
+          padding: 4px 12px;
+          border: ${() => (error ? "1px solid red" : "1px solid gray")};
+        `;
+      }
+    }}
   }
   ${({ disabled }) =>
     disabled &&
