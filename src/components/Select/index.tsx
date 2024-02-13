@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled, { CSSObject, css } from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Input from "../Input";
 import { createPortal } from "react-dom";
 import SvgArrowDown from "../../Svgr/ArrowDown";
@@ -140,7 +140,7 @@ const Select: React.FunctionComponent<DropdownProps> = ({
         }
         onChange={(e) => onChange && onChange(e.target.value)}
         style={{ cursor: "pointer" }}
-        suffix={<SvgArrowDown />}
+        suffix={<AnimationArrow isOpened={isOpened} />}
       />
     </Container>
   );
@@ -148,10 +148,20 @@ const Select: React.FunctionComponent<DropdownProps> = ({
 
 export default Select;
 
+const scale = keyframes`
+  0% {
+    scale: 0.8;
+  }
+  100% {
+    scale: 1;
+  }
+`;
+
 const Container = styled.div`
   position: relative;
   height: 32px;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 const StyledUl = styled("ul").withConfig({
@@ -175,6 +185,13 @@ const StyledUl = styled("ul").withConfig({
   border: 1px solid gray;
   background: white;
   overflow: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  animation: 0.05s ${scale} ease-out;
 `;
 
 const StyledLi = styled("li").withConfig({
@@ -186,7 +203,14 @@ const StyledLi = styled("li").withConfig({
   height: ${({ listheight }) => `${listheight}px`};
   border-radius: 4px;
   &:hover {
-    background: red;
+    background: gray;
     cursor: pointer;
   }
+`;
+
+const AnimationArrow = styled(SvgArrowDown).withConfig({
+  shouldForwardProp: (prop) => !["isOpened"].includes(prop),
+})<{ isOpened: boolean }>`
+  transform: ${({ isOpened }) => isOpened && "rotateX(180deg)"};
+  transition: 0.3s;
 `;
