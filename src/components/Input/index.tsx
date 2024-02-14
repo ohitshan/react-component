@@ -72,7 +72,8 @@ const Container = styled("span").withConfig({
 `;
 
 const StyledInput = styled("input").withConfig({
-  shouldForwardProp: (prop) => !["error"].includes(prop),
+  shouldForwardProp: (prop) =>
+    !["error", "addonAfter", "addonBefore"].includes(prop),
 })<
   Pick<
     InputProps,
@@ -88,7 +89,7 @@ const StyledInput = styled("input").withConfig({
   border-radius: 4px;
   border: 1px solid gray;
   outline: none;
-
+  width: 100%;
   ${({ addonAfter, addonBefore }) => {
     if (addonAfter) {
       return css`

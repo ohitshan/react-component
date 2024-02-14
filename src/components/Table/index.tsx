@@ -47,14 +47,14 @@ const StyledTable = styled.table`
 `;
 
 const StyledTr = styled.tr`
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid gray;
 `;
 
 const StyledTh = styled.th`
   text-align: start;
-  padding: 12px 24px;
+  padding: 6px 12px;
 `;
 
 const StyledTd = styled.td`
-  padding: 12px 24px;
+  padding: 6px 12px;
 `;

@@ -16,16 +16,14 @@ export const Primary: Story = {
   args: {},
   render: ({ ...args }) => (
     <Container>
-      <Input />
+      <Input prefix={<div>123</div>} />
+      <Input addonAfter={<div>123</div>} />
     </Container>
   ),
 };
 
 const Container = styled.div`
   width: 100%;
-`;
-const Div = styled.span`
-  padding: 4px;
-  background: gray;
-  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
 `;

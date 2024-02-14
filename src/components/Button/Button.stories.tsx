@@ -15,11 +15,11 @@ type Story = StoryObj<typeof Button>;
 export const Primary: Story = {
   args: {
     color: "red",
-    $block: true,
+    block: true,
   },
   render: ({ ...args }) => (
     <Container>
-      <Button {...args} $block={args.$block}></Button>
+      <Button {...args} block={args.block}></Button>
     </Container>
   ),
 };
@@ -28,4 +28,5 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: 100vh;
 `;
