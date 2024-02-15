@@ -1,6 +1,6 @@
 {
   "name": "react-component-library-monkey",
-  "version": "0.0.28",
+  "version": "0.0.31",
   "description": "component library for react",
   "main": "build/index.js",
   "author": "han",
